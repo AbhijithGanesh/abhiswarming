@@ -2,7 +2,35 @@
 
 ### ArduPilot Installation
 
+#### Ardupilot
+
+In home directory:
+```
+cd ~
+sudo apt install git
+git clone https://github.com/ArduPilot/ardupilot.git
+cd ardupilot
+git checkout Copter-3.6
+git submodule update --init --recursive
+```
+
+```
+sudo apt install python-matplotlib python-serial python-wxgtk3.0 python-wxtools python-lxml python-scipy python-opencv ccache gawk python-pip python-pexpect
+```
+
+```
+sudo pip install future pymavlink MAVProxy
+```
+
+Add these lines to end of `~/.bashrc`/`~/.zsshrc` (the file open in the text editor):
+```
+export PATH=$PATH:$HOME/ardupilot/Tools/autotest
+export PATH=/usr/lib/ccache:$PATH
+```
+
 To install ArduPilot, you'll need to follow these steps:
+
+#### Ardupilot Plugin
 
 1. Install required dependencies:
 
