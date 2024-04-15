@@ -1,5 +1,24 @@
 ## Special Instructions
 
+### Add ROSDEP dependencies
+
+```sh
+cd ~/ros2_ws
+source /opt/ros/humble/setup.bash
+sudo apt update
+rosdep update
+rosdep install --from-paths src --ignore-src -r
+```
+
+### Micro-XRCE-DDS-Gen
+
+**Warning: Have JAVA Installed**
+```sh
+git clone --recurse-submodules https://github.com/ardupilot/Micro-XRCE-DDS-Gen.git
+cd Micro-XRCE-DDS-Gen
+./gradlew assemble
+```
+
 ### ArduPilot Installation
 
 #### Ardupilot
