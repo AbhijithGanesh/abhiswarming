@@ -1,26 +1,42 @@
+Certainly! Here's the document with an added index:
+
+---
+
 # Abhiswarming ROS package
 
-## Requirements
+## Index
+1. [Requirements](#requirements)
+2. [Special Instructions](#special-instructions)
+    - [Add ROSDEP dependencies](#add-rosdep-dependencies)
+    - [Micro-XRCE-DDS-Gen](#micro-xrce-dds-gen)
+    - [ArduPilot Installation](#ardupilot-installation)
+        - [Ardupilot](#ardupilot)
+        - [Ardupilot Plugin](#ardupilot-plugin)
+    - [Special Python3 Link](#special-python3-link)
+    - [ROS2 Check](#ros2-check)
+    - [MAV Proxy](#mav-proxy)
 
-The following software are required:
+## Requirements <a id="requirements"></a>
 
-1. MicroXRCE
-2. ArduPilot
-3. Gazebo8
-4. MAVProxy
-5. ROS2 - Iron
+To use the Abhiswarming ROS package, ensure you have the following software installed:
 
-These are necessary. Also clone the following repo into the `workspace_dir`
+1. **MicroXRCE**
+2. **ArduPilot**
+3. **Gazebo8**
+4. **MAVProxy**
+5. **ROS2 - Iron**
+
+These components are essential for proper functionality. Additionally, clone the following repository into your workspace directory:
 
 ```sh
-https://github.com/micro-ROS/micro-ROS-Agent.git
+git clone https://github.com/micro-ROS/micro-ROS-Agent.git ~/workspace_dir
 ```
 
-Run `colcon build` before starting
+Before proceeding, run `colcon build`.
 
-## Special Instructions
+## Special Instructions <a id="special-instructions"></a>
 
-### Add ROSDEP dependencies
+### Add ROSDEP dependencies <a id="add-rosdep-dependencies"></a>
 
 ```sh
 cd ~/ros2_ws
@@ -30,10 +46,10 @@ rosdep update
 rosdep install --from-paths src --ignore-src -r
 ```
 
-### Micro-XRCE-DDS-Gen
+### Micro-XRCE-DDS-Gen <a id="micro-xrce-dds-gen"></a>
 
-**Warning: Have JAVA Installed**
-Without Java, MicroXRCE doesn't work
+**Warning: Ensure JAVA is installed**
+MicroXRCE requires Java to function properly.
 
 ```sh
 git clone --recurse-submodules https://github.com/ardupilot/Micro-XRCE-DDS-Gen.git
@@ -41,11 +57,11 @@ cd Micro-XRCE-DDS-Gen
 ./gradlew assemble
 ```
 
-### ArduPilot Installation
+### ArduPilot Installation <a id="ardupilot-installation"></a>
 
-#### Ardupilot
+#### Ardupilot <a id="ardupilot"></a>
 
-In home directory:
+Navigate to the home directory:
 
 ```sh
 cd ~
@@ -56,24 +72,26 @@ git checkout Copter-3.6
 git submodule update --init --recursive
 ```
 
+Install required dependencies:
+
 ```sh
 sudo apt install python-matplotlib python-serial python-wxgtk3.0 python-wxtools python-lxml python-scipy python-opencv ccache gawk python-pip python-pexpect
 ```
+
+Install Python packages:
 
 ```sh
 sudo pip install future pymavlink MAVProxy
 ```
 
-Add these lines to end of `~/.bashrc`/`~/.zsshrc` (the file open in the text editor):
+Append the following lines to the end of either `~/.bashrc` or `~/.zshrc`:
 
 ```sh
 export PATH=$PATH:$HOME/ardupilot/Tools/autotest
 export PATH=/usr/lib/ccache:$PATH
 ```
 
-To install ArduPilot, you'll need to follow these steps:
-
-#### Ardupilot Plugin
+#### Ardupilot Plugin <a id="ardupilot-plugin"></a>
 
 1. Install required dependencies:
 
@@ -98,18 +116,17 @@ To install ArduPilot, you'll need to follow these steps:
     make -j4
     ```
 
-### Special Python3 Link
+### Special Python3 Link <a id="special-python3-link"></a>
 
-For ArduPilot to work correctly, it requires `python` to be available at `/usr/bin/env`. You can create a symbolic link for this purpose:
+To ensure ArduPilot functions correctly, create a symbolic link for `python`:
 
 ```sh
 ln -s /usr/bin/python3 /usr/bin/python
 ```
 
 This command creates a soft link named `python` pointing to `/usr/bin/python3`.
-This version breaks down the ArduPilot installation process into clear steps and provides a more structured approach to the instructions. Additionally, it explains the purpose of creating the symbolic link for ArduPilot.
 
-### ROS2 Check
+### ROS2 Check <a id="ros2-check"></a>
 
 ```sh
 source ~/ros2_ws/install/setup.bash
@@ -121,8 +138,10 @@ ros2 node info /ardupilot_dds
 ros2 topic echo /ap/geopose/filtered
 ```
 
-### MAV Proxy
+### MAV Proxy <a id="mav-proxy"></a>
 
 ```sh
 mavproxy.py --console --map --aircraft test --master=:14550
 ```
+
+Following these instructions will ensure the successful setup and operation of the Abhiswarming ROS package.
