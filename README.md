@@ -1,3 +1,7 @@
+# Abhiswarming ROS package
+
+## Index
+
 ## Special Instructions
 
 ### Add ROSDEP dependencies
@@ -74,7 +78,7 @@ To install ArduPilot, you'll need to follow these steps:
     make -j4
     ```
 
-### Special Link
+### Special Python3 Link
 
 For ArduPilot to work correctly, it requires `python` to be available at `/usr/bin/env`. You can create a symbolic link for this purpose:
 
@@ -84,3 +88,21 @@ ln -s /usr/bin/python3 /usr/bin/python
 
 This command creates a soft link named `python` pointing to `/usr/bin/python3`.
 This version breaks down the ArduPilot installation process into clear steps and provides a more structured approach to the instructions. Additionally, it explains the purpose of creating the symbolic link for ArduPilot.
+
+### ROS2 Check
+
+```sh
+source ~/ros2_ws/install/setup.bash
+# See the node appear in the ROS graph
+ros2 node list
+# See which topics are exposed by the node
+ros2 node info /ardupilot_dds
+# Echo a topic published from ArduPilot
+ros2 topic echo /ap/geopose/filtered
+```
+
+### MAV Proxy
+
+```sh
+mavproxy.py --console --map --aircraft test --master=:14550
+```
