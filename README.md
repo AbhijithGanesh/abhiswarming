@@ -1,7 +1,3 @@
-Certainly! Here's the document with an added index:
-
----
-
 # Abhiswarming ROS package
 
 ## Index
